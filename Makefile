@@ -92,11 +92,12 @@ DEPS = $(SOURCES:.c=.d)
 build: all
 
 .PHONY: all
-all: $(DEPS) $(TARGET).out
+all: $(TARGET).out
 
 $(TARGET).out : $(OBJS)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ $(OBJS)
-	$(SIZE) $(TARGET).out
+	./$(TARGET).out
+#	(SIZE) $(TARGET).out
 
 .PHONY: assembly
 assembly: $(ASMS) $(TARGET).asm
