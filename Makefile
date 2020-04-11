@@ -86,7 +86,7 @@ DEPS = $(SOURCES:.c=.d)
 %.d : %.c
 	$(CC) -M $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
-
+$(info object files: $(OBJS))
 
 .PHONY: build
 build: all

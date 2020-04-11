@@ -9,7 +9,7 @@
 #
 #*****************************************************************************
 PLATFORM = HOST
-SRCLIST = src/
+
 # Add your Source files to this variable
 ifeq ($(PLATFORM), MSP432)
 	SOURCES = src/main.c \
