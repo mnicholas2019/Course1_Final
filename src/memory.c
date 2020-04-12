@@ -48,3 +48,25 @@ void clear_all(char * ptr, unsigned int size){
   set_all(ptr, 0, size);
 }
 
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length) {
+	uint8_t copy[length];
+
+	for (int i = 0; i < length; i++){
+		*(copy + i) = *(src + i);
+	}
+
+	for (int i = 0; i < length; i++){
+		*(dst + i) = *(copy + i);
+	}
+
+	return dst;
+}
+
+int32_t * reserve_words(size_t length){
+	return (int32_t *) malloc(length * sizeof(int32_t));
+}
+
+void free_words(uint32_t * src){
+	free(src);
+}
+

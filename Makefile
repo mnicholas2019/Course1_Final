@@ -32,6 +32,11 @@
 #------------------------------------------------------------------------------
 include sources.mk
 
+# Platform Overrides
+PLATFORM = NONE
+COURSE = COURSE1
+VERBOSE = ENABLE
+
 GENFLAGS = -Wall \
 			-Werror \
 			-g \
@@ -62,11 +67,15 @@ else
 	# Compiler Flags and Defines
 	CC = gcc
 	CFLAGS = $(GENFLAGS)
-	CPPFLAGS = -DHOST $(INCLUDES)
+	CPPFLAGS = -DHOST -D$(COURSE) $(INCLUDES)
 	LDFLAGS = -Wl,-Map=src/$(TARGET).map
 	SIZE = size 
 	OBJDUMP = objdump
 
+endif
+
+ifeq ($(VERBOSE), ENABLE)
+	CPPFLAGS += -DVERBOSE
 endif
 
 PREP = $(SOURCES:.c=.i)
@@ -86,15 +95,13 @@ DEPS = $(SOURCES:.c=.d)
 %.d : %.c
 	$(CC) -M $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
-$(info object files: $(OBJS))
-
 .PHONY: build
 build: all
 
 .PHONY: all
 all: $(TARGET).out
 
-$(TARGET).out : $(OBJS)
+$(TARGET).out : $(OBJS) #$(DEPS)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ $(OBJS)
 	./$(TARGET).out
 #	(SIZE) $(TARGET).out

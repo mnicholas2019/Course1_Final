@@ -20,8 +20,10 @@
  * @date April 1 2017
  *
  */
+
 #include "platform.h"
 #include "memory.h"
+#include "course1.h"
 
 #define MAX_LENGTH (10)
 char buffer[MAX_LENGTH];
@@ -30,10 +32,9 @@ char buffer[MAX_LENGTH];
 int main(void) {
 
   #ifdef COURSE1
-    PRINTF("WE HERE BOIIIIIS");
-  #endif
-  #ifndef COURSE1
-    PRINTF("WE NOT HERE :(");
+    PRINTF("WE HERE BOIIIIIS\n");
+    course1();
+  #else
     unsigned int i;
     char value;
 
@@ -55,7 +56,8 @@ int main(void) {
       PRINTF("%c", buffer[i]);
     }
     PRINTF("\n");
-  return 0;
   #endif
+
+  return 0;
 }
 

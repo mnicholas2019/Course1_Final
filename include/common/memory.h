@@ -21,6 +21,9 @@
  */
 #ifndef __MEMORY_H__
 #define __MEMORY_H__
+#include <stdlib.h>
+#include <stdint.h>
+#include <stddef.h>
 
 /**
  * @brief Sets a value of a data array 
@@ -89,5 +92,42 @@ void set_all(char * ptr, char value, unsigned int size);
  * @return void.
  */
 void clear_all(char * ptr, unsigned int size);
+
+
+/**
+ * @brief Copies certain number of values from on location to another
+ *
+ * Given ptr to source and destination, it will copy a given number of elements
+ * from source to destination
+ *
+ * @param src Pointer to source of data to be copied
+ * @param dst Pointer to destination of data to be copied
+ * @param length Number of elements to be copied
+ *
+ * @return pointer to destination.
+ */
+uint8_t * my_memmove(uint8_t * src, uint8_t * dst, size_t length);
+
+
+/**
+ * @brief Reserves a certain number of 'words' to allocate in dynamic memory
+ *
+ * Given length (number of words), allocate the amount in dynamic memory
+ *
+ * @param length Number of words to allocate in dynamic memory
+ *
+ * @return pointer to dynamically allocated memory
+ */
+int32_t * reserve_words(size_t length);
+
+
+/**
+ * @brief Free dynamic memory allocation
+ *
+ * Given pointer, free associated dynamic memory
+ *
+ * @param src to be freed
+ */
+void free_words(uint32_t * src);
 
 #endif /* __MEMORY_H__ */
